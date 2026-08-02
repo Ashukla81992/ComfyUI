@@ -1,0 +1,3 @@
+m4_models:
+  is_default: true
+  loras: /Users/a0s10ik/ExternalSoftware/GenrativeModels/models/Loras

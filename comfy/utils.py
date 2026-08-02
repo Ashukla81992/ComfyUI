@@ -50,10 +50,16 @@ if hasattr(torch.serialization, "add_safe_globals"):  # TODO: this was added in 
     scalar.__module__ = "numpy.core.multiarray"
 
     from numpy import dtype
-    from numpy.dtypes import Float64DType
+    try:
+        from numpy.dtypes import Float64DType
+    except Exception:
+        Float64DType = None
     from _codecs import encode
 
-    torch.serialization.add_safe_globals([ModelCheckpoint, scalar, dtype, Float64DType, encode])
+    safe_globals = [ModelCheckpoint, scalar, dtype, encode]
+    if Float64DType is not None:
+        safe_globals.append(Float64DType)
+    torch.serialization.add_safe_globals(safe_globals)
     ALWAYS_SAFE_LOAD = True
     logging.info("Checkpoint files will always be loaded safely.")
 else:
