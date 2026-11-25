@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import argparse
 import hashlib
-import os
 import sys
 import urllib.request
 from pathlib import Path
@@ -73,12 +72,12 @@ def main() -> int:
 
     for url, dest in wanted:
         if dest.exists() and not args.force:
-            print(f"Exists: {dest}")
+            print(f"Exists: {dest}")  # noqa: T201 - CLI output
             continue
-        print(f"Fetching: {url}")
-        print(f"To:      {dest}")
+        print(f"Fetching: {url}")  # noqa: T201 - CLI output
+        print(f"To:      {dest}")  # noqa: T201 - CLI output
         _download(url, dest)
-        print(f"Saved:   {dest} (sha256={_sha256(dest)})")
+        print(f"Saved:   {dest} (sha256={_sha256(dest)})")  # noqa: T201 - CLI output
 
     return 0
 
