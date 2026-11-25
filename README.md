@@ -1,3 +1,6 @@
+> **Local setup:** this checkout is the shared ComfyUI service for several separate video pipelines.
+> See [PIPELINES.md](PIPELINES.md) for how projects use it and [WORKING.md](WORKING.md) to run it.
+
 <div align="center">
 
 # ComfyUI

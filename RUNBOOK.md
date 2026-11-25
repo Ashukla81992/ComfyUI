@@ -97,6 +97,13 @@ venv/bin/pip check
 
 ## 3. Starting ComfyUI
 
+### Shared service (used by all video pipelines)
+
+The pipelines (AmaraVideo, LocalComfyStudio, AutoChildrenStoryVideo) share this server. Start it
+with `./comfy_service.sh ensure` (add `--profile lowmem` for LocalComfyStudio's memory flags) and
+stop it with `./comfy_service.sh stop`, which refuses while any pipeline has work queued.
+See [PIPELINES.md](PIPELINES.md).
+
 ### Normal start (MPS, all custom nodes)
 
 ```bash
@@ -135,7 +142,9 @@ tail -f ~/comfyui.log
 
 ## 4. Stopping ComfyUI
 
-Press Ctrl+C in the terminal where ComfyUI is running, or:
+If it was started with `comfy_service.sh`: `./comfy_service.sh stop` (refuses while any pipeline has jobs queued).
+
+Otherwise press Ctrl+C in the terminal where ComfyUI is running, or:
 
 ```bash
 pkill -f "venv/bin/python main.py"
